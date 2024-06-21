@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/user/repo.git'
+                git 'https://github.com/Zajecia-PJATK/kolokwium-23-24-jenkins-1-kamiltomczuk'
             }
         }
         stage('Build') {
