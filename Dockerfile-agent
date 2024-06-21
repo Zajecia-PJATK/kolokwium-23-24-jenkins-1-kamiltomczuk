@@ -1,0 +1,14 @@
+FROM node:14
+
+# Tworzenie katalogu dla jenkins.war
+RUN mkdir -p /usr/share/jenkins
+
+# Pobranie Jenkins Agent
+RUN curl -sSL http://mirrors.jenkins.io/war-stable/latest/jenkins.war -o /usr/share/jenkins/jenkins.war --create-dirs
+
+# Instalacja narzędzi
+RUN npm install -g npm@latest
+
+# Utworzenie katalogu roboczego
+RUN mkdir -p /home/jenkins/agent
+WORKDIR /home/jenkins/agent

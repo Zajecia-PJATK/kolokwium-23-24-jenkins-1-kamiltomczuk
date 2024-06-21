@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/user/repo.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                script {
+                    sh 'npm install'
+                    sh 'npm run build'
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                script {
+                    sh 'npm test'
+                }
+            }
+            post {
+                always {
+                    junit '**/test-results.xml'
+                }
+            }
+        }
+        stage('Lint') {
+            steps {
+                script {
+                    sh 'npm run lint'
+                }
+            }
+        }
+    }
+}
